@@ -1,0 +1,25 @@
+import math
+
+
+a = int(input("Choose a number "))
+porque = (input("Do you want to do square root? "))
+match (porque):
+        case "yes":
+                print (math. sqrt(a))
+        case "no":
+                print ("ok")
+                b = int(input("Choose another number "))
+                elejir = (input("Choose what you want to do: add, subtract, multiply, divide: "))
+                match (elejir):
+                        case "add":
+                                print (a+b)
+                        case "subtract":
+                                print (a-b)
+                        case "multiply":
+                                print (a*b)
+                        case "divide":
+                                print (a/b)
+                        case "square root":
+                                print ("you said no before... so kinda late")
+
+

@@ -1,0 +1,186 @@
+
+menu = {
+    "mozzarella sticks": 6,
+    "bruschetta": 8,
+    "margherita pizza": 12,
+    "pepperoni pizza": 13,
+    "vegetarian pizza": 15,
+    "hawaiian pizza": 15,
+    "lemonade": 4,
+    "soda": 3,
+    "water": 2,
+    "iced tea": 4
+}
+
+menu_desc = {
+    "mozzarella sticks": "Mozzarella sticks are crispy breaded mozzarella cheese sticks, served with a side of marinara sauce for dipping.",
+    "bruschetta": "Bruschetta is a plate including toasted slices of Italian bread topped with fresh diced tomatoes, garlic, basil, and drizzled with balsamic glaze.",
+    "margherita pizza": "Margherita pizza is a classic pizza featuring a thin crust, tomato sauce, fresh mozzarella, basil leaves, and a touch of olive oil.",
+    "pepperoni pizza": "Pepperoni pizza is a crowd-pleasing pizza with a thin crust, tomato sauce, mozzarella cheese, and generous slices of pepperoni.",
+    "vegetarian pizza": "Vegetarian pizza is a delightful pizza loaded with a variety of fresh, colorful vegetables and melted mozzarella cheese on a thin crust.",
+    "hawaiian pizza": "Hawaiian pizza is a tropical twist on pizza, featuring a thin crust topped with tomato sauce, mozzarella cheese, ham, and pineapple.",
+    "lemonade": "Lemonade is a refreshing and tangy citrus drink made from freshly squeezed lemons, sweetened to perfection.",
+    "soda": "Soda is a carbonated soft drink, served chilled.",
+    "water":  "A bottle of sparkling water, perfect for staying hydrated during your meal.",
+    "iced tea": "Iced tea is a cooling and slightly sweetened tea served over ice, a great choice to quench your thirst."
+}
+
+
+desserts = {
+    "tiramisu": 8,
+    "crostata": 6,
+    "italian gelato": 4
+}
+
+menu_desc2 = {
+    "tiramisu": "An Italian dessert with layers of coffee-soaked ladyfingers, creamy mascarpone, and cocoa.",
+    "crostata": "An Italian baked tart with a buttery crust filled with various sweet or savory ingredients.",
+    "italian gelato": "A dense and creamy frozen dessert made with milk, cream, and various flavors such as fruit and nuts."
+}
+
+name = input("Welcome to Crust & Crave! What is your name? ")
+reservation = input("Do you have a reservation? Please say yes or no: ")
+reservationlist = ["Braulio Almonte", "Lia Morrison", "Maria Gonzalez", "Enzo Bonetti", "Cely Reyes"]
+match reservation.lower():
+
+    case "yes":
+        verification = input("Whose name is the reservation in?\n")
+        if (verification in reservationlist):
+            order = input("Your table is ready! What would you like to order? \nThe appetizers are: \nMozzarella Sticks - $6 \nBruschetta - $8 \n\nThe main dishes are: \nMargherita Pizza - $12 \nPepperoni Pizza - $13\nVegetarian Pizza - $15 \nHawaiian Pizza - $15 \n\nThe beverages are: \nLemonade - $4\nSoda - $3\nWater - $2\nIced Tea - $4\n")
+            
+            #phase 3
+            #Description = input()
+            itemsorder = order.split(", ")
+            
+            finalOrder = []
+            
+
+            for item in itemsorder:
+                realItem = item.lower()
+                if "?" in item.lower():
+                    print (menu_desc[realItem[:-1]])
+                    option = input("Do you still want to order it?\n")
+                    if option.lower() == "yes": 
+                        finalOrder.append(realItem[:-1])
+                    else:
+                        continue
+                else:
+                    finalOrder.append(realItem)
+            
+            finalOrder2 = []
+            dessertYESNO = input("Would you like dessert?\n")
+            if dessertYESNO.lower() == "yes":
+                order2 = input("What desserts would you like? The options are: \nTiramisu - $8 \nCrostata - $6 \nItalian gelato - $4\n")
+            
+                itemsorder2 = order2.split(", ")
+                
+                
+
+                for item2 in itemsorder2:
+                    realItem2 = item2.lower()
+                    if "?" in item2.lower():
+                        print (menu_desc2[realItem2[:-1]])
+                        option = input("Do you still want to order it?\n")
+                        if option.lower() == "yes": 
+                            finalOrder2.append(realItem2[:-1])
+                        else:
+                            continue
+                    else:
+                        finalOrder2.append(realItem2)
+
+            else:
+                print("Okay.")
+                
+
+            costcoffee = 0
+            coffeeYESNO = input("Would you like a cup of coffee for $2?\n")
+            if coffeeYESNO.lower() == "yes":
+                print("Coming right away!")
+                costcoffe = 2
+                finalOrder.append("Coffee")
+            else:
+                print("Okay.")
+                
+        
+            costmealdesserts = 0
+            costmealdishes = 0 
+            for dishes in finalOrder:
+                if dishes != 'Coffee':  
+                    costmealdishes += menu[dishes] 
+            for dessert in finalOrder2:
+                costmealdesserts += desserts[dessert]
+            for item in finalOrder:
+                if item == "Coffee":
+                    print("Coffee 2")
+                else:
+                    print(item,menu[item])
+            for item2 in finalOrder2:
+                print(item2,desserts[item2])
+            totalFinal = costmealdesserts + costmealdishes + costcoffee
+            tax = 1.28
+            subtotal = totalFinal + tax
+            
+
+            print("In total you have to pay with the tax included: $", subtotal ) 
+
+            tip_percentage = (input("How much do you want to tip? The options are: \n10%\n15%\n20%\n"))
+
+            
+            match tip_percentage:
+                case "10%":
+                    print("In total you have to pay: $", subtotal*1.1)
+                    subtotal*=1.1
+
+                case "15%":
+                    print("In total you have to pay: $", subtotal*1.15)
+                    subtotal*=1.15
+
+                case "20%":
+                    print("In total you have to pay: $", subtotal*1.2)
+                    subtotal*=1.2
+            
+            
+             
+
+            payment = input("Are you going to pay in cash or card?\n")
+            card_balance=2000
+            
+            
+            if payment.lower() == "card":
+                if card_balance >= subtotal: 
+                    print("approve")
+                    leftovercard = (card_balance - subtotal)
+                    print(f"Your leftover is: {leftovercard} dollars.")
+                
+                else:
+                    print("rejected")
+                        
+
+            elif payment.lower() == "cash":
+                cashamount = int(input("How much cash would you give me? "))
+                if cashamount >= subtotal:
+                    change = (cashamount - subtotal)
+                    bills = [100, 50, 20, 10, 5, 1, 0.25, 0.1, 0.05, 0.01]
+                    for bill in bills:
+                        if change >= bill:
+                            numberbills = change // bill
+                            change %= bill
+                            if numberbills > 0:
+                                print(f"{numberbills} x {bill} Dollars")
+                                
+                            else: 
+                                break
+                    cash_leftover = (cashamount -subtotal)
+                    print(f"Your left over is: {cash_leftover} dollars")
+                    print(f"Thanks for eating at Crust & Crave {name}. Hope you enjoyed your meal!")
+
+                else:
+                    print("rejected, get out") 
+            else:
+                print("option not valid")
+        else:
+            print("Sorry! There's no reservation to that name.")
+
+        
+    case "no":
+        print("Sorry! we can't let you in without a reservation.")

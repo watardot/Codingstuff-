@@ -1,0 +1,13 @@
+numbers1 = int(input("Choose a number: "))
+numbers2 = int(input("Choose another number: "))
+numbers3 = int(input("Choose one more number: "))
+
+if numbers1 > numbers3 and numbers2:
+    print("the first number is bigger")
+elif numbers2 > numbers1 and numbers3:
+    print("The second number is bigger")
+elif numbers3 > numbers2 and numbers1:
+    print("The third number is bigger")
+
+elif numbers1 == numbers2 == numbers3:
+    print("the numbers are the same")

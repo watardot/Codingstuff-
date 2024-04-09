@@ -1,0 +1,5 @@
+from pytube import YouTube
+
+yt = YouTube("https://www.youtube.com/watch?v=xjpcAaIblR4")
+selectedStream = yt.streams.get_audio_only("mp4")
+selectedStream.download()

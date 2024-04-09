@@ -1,0 +1,9 @@
+
+why = (input("do you have to make another code for collegeboard? "))
+
+if why == "yes":
+    print ("not again ):")
+if why == "no":
+    print ("finally no more codes :)")
+if why == "maybe":
+    print ("no.")
